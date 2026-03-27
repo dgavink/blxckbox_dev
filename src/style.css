@@ -114,6 +114,17 @@ section {
   white-space: nowrap;
 }
 
+@media (max-width: 480px) {
+  .services-watermark {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .services-watermark__text {
+    font-size: clamp(90px, 18vw, 220px);
+  }
+}
+
 
 .services-grid {
   margin-top: clamp(-120px, -9vw, -60px);
