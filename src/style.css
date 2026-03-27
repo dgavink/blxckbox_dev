@@ -123,6 +123,16 @@ section {
   .services-watermark__text {
     font-size: clamp(90px, 18vw, 220px);
   }
+
+  .services-watermark__our {
+    transform: translate(-6%, -30%);
+  }
+}
+
+@media (max-width: 640px) {
+  .services-grid {
+    margin-top: -120px;
+  }
 }
 
 
