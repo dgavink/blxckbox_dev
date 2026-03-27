@@ -96,10 +96,19 @@
           <source src="/hero2.mp4" type="video/mp4" />
         </video>
       </div>
+      <!-- Mobile scroll cue (below video) -->
+      <div class="md:hidden flex flex-col items-center gap-2 mt-4 mb-2 text-gray-400">
+        <div class="w-10 h-10 rounded-none border border-white/30 flex items-center justify-center animate-bounce">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </div>
+        <span class="text-[10px] uppercase tracking-[0.5em] text-gray-500">Scroll</span>
+      </div>
       <!-- Hero layout -->
       <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
         <!-- Left: content -->
-        <div class="w-full md:w-1/2 -mt-12 pt-4 pb-16 md:mt-0 md:py-0">
+        <div class="w-full md:w-1/2 -mt-16 pt-2 pb-14 md:mt-0 md:py-0">
           <div class="text-left max-w-xl">
             <h1 class="hero-fade-in mb-6 leading-[0.8]" style="animation-delay: 0.2s">
               <span class="block text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">Limitless Design</span>
@@ -119,7 +128,7 @@
         </div>
       </div>
       <!-- Scroll Indicator -->
-      <div class="hero-fade-in absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-10"
+      <div class="hero-fade-in hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-4 z-10"
         style="animation-delay: 0.9s">
         <span
           class="text-[10px] uppercase tracking-[0.5em] text-gray-500 rotate-90 origin-left ml-2 translate-y-2">Scroll</span>
