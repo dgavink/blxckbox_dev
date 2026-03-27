@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>BlaxckBox | Architecting Digital Excellence</title>
+  <!-- Google Fonts: Space Grotesk -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#000000',
+            black: '#000000',
+            white: '#ffffff',
+            gray: {
+              100: '#f5f5f5',
+              200: '#e5e5e5',
+              300: '#d4d4d4',
+              400: '#a3a3a3',
+              500: '#737373',
+              600: '#525252',
+              700: '#404040',
+              800: '#262626',
+              900: '#171717',
+            }
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+          },
+          borderRadius: {
+            'none': '0',
+            'sm': '2px',
+            DEFAULT: '4px',
+            'md': '4px',
+            'lg': '4px',
+            'xl': '4px',
+            '2xl': '4px',
+            '3xl': '4px',
+            'full': '9999px',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+</head>
+
+<body class="font-sans antialiased bg-black text-white selection:bg-white selection:text-black">
+  <!-- BEGIN: Navigation -->
+  <nav class="main-nav fixed top-0 w-full z-50 text-white transition-colors duration-300"
+    data-purpose="main-navigation">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center">
+        <img alt="BlaxckBox Logo" class="h-12" src="/logo.png" />
+      </div>
+      <!-- Desktop Sidebar Toggle -->
+      <div class="hidden md:flex items-center">
+        <button class="p-2 hover:bg-white/10 transition-colors" id="desktop-sidebar-toggle"
+          aria-label="Toggle navigation">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M4 8h16M4 16h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button class="p-2" data-purpose="mobile-menu-toggle">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+            <path d="M4 8h16M4 16h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- END: Navigation -->
+  <main>
+    <!-- BEGIN: Hero Section -->
+    <section class="relative min-h-screen overflow-hidden bg-black" data-purpose="hero-section">
+      <!-- Right: video (flush to edge, half-frame crop) -->
+      <div class="relative md:absolute md:inset-y-0 md:right-0 md:w-1/2 w-full h-[60vh] md:h-full overflow-hidden">
+        <video class="w-full h-full object-cover object-right opacity-90" autoplay muted loop playsinline
+          aria-hidden="true" data-purpose="hero-video">
+          <source src="/hero2.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <!-- Hero layout -->
+      <div class="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
+        <!-- Left: content -->
+        <div class="w-full md:w-1/2 py-28 md:py-0">
+          <div class="text-left max-w-xl">
+            <h1 class="hero-fade-in mb-6 leading-[0.8]" style="animation-delay: 0.2s">
+              <span class="block text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">Limitless Design</span>
+              <span
+                class="mrs-saint-delafield-regular block text-6xl md:text-7xl lg:text-8xl -mt-1 text-accent-orange">Solutions</span>
+            </h1>
+            <p class="hero-fade-in text-base md:text-lg text-gray-400 leading-relaxed mb-8"
+              style="animation-delay: 0.45s">
+              We craft high-performance digital experiences that combine precision design with robust engineering.
+            </p>
+            <a href="#services"
+              class="hero-fade-in inline-block px-10 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-gray-200 transition-all"
+              style="animation-delay: 0.65s">
+              View Our Services
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll Indicator -->
+      <div class="hero-fade-in absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-10"
+        style="animation-delay: 0.9s">
+        <span
+          class="text-[10px] uppercase tracking-[0.5em] text-gray-500 rotate-90 origin-left ml-2 translate-y-2">Scroll</span>
+        <div class="w-[1px] h-20 bg-gradient-to-b from-white to-transparent"></div>
+      </div>
+    </section>
+    <!-- END: Hero Section -->
+    <!-- BEGIN: Services Section -->
+    <section class="py-32 bg-black text-white relative overflow-x-hidden services-section"
+      data-purpose="services-section" id="services">
+      <div class="services-watermark reveal-on-scroll" aria-hidden="true">
+        <span class="services-watermark__text-wrap">
+          <span class="services-watermark__text">Services</span>
+          <span class="services-watermark__our text-accent-orange">OUR</span>
+          <span class="services-watermark__number">01 /</span>
+        </span>
+      </div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div class="max-w-xl"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto services-grid">
+          <!-- Web Development Card -->
+          <div class="service-card reveal-on-scroll" style="--reveal-delay: 0.05s;">
+            <div class="service-card__content">
+              <img class="service-card__icon" src="/se1.png" alt="Web Development icon" />
+              <span class="service-card__index">01</span>
+              <h3>Web Development</h3>
+              <p>High-performance sites and scalable web apps.</p>
+            </div>
+            <div class="service-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- UI/UX Design Card -->
+          <div class="service-card reveal-on-scroll" style="--reveal-delay: 0.1s;">
+            <div class="service-card__content">
+              <img class="service-card__icon" src="/se2.png" alt="UI/UX Design icon" />
+              <span class="service-card__index">02</span>
+              <h3>UI/UX Design</h3>
+              <p>Interfaces and product flows that convert.</p>
+            </div>
+            <div class="service-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- Logo Design Card -->
+          <div class="service-card reveal-on-scroll" style="--reveal-delay: 0.15s;">
+            <div class="service-card__content">
+              <img class="service-card__icon" src="/se3.png" alt="Logo Design icon" />
+              <span class="service-card__index">03</span>
+              <h3>Logo & Branding</h3>
+              <p>Distinctive marks for modern brands.</p>
+            </div>
+            <div class="service-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- Flyers & Tags Card -->
+          <div class="service-card reveal-on-scroll" style="--reveal-delay: 0.2s;">
+            <div class="service-card__content">
+              <img class="service-card__icon" src="/se4.png" alt="Flyers & Tags icon" />
+              <span class="service-card__index">04</span>
+              <h3>Flyers &amp; Tags</h3>
+              <p>Print-ready assets for campaigns and packaging.</p>
+            </div>
+            <div class="service-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- Social Media Posters Card -->
+          <div class="service-card reveal-on-scroll" style="--reveal-delay: 0.25s;">
+            <div class="service-card__content">
+              <img class="service-card__icon" src="/se5.png" alt="Social Media Posters icon" />
+              <span class="service-card__index">05</span>
+              <h3>Social Media Posters</h3>
+              <p>High-impact visuals built for feeds.</p>
+            </div>
+            <div class="service-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- Stickers Card -->
+          <div class="service-card reveal-on-scroll" style="--reveal-delay: 0.3s;">
+            <div class="service-card__content">
+              <img class="service-card__icon" src="/se6.png" alt="Stickers icon" />
+              <span class="service-card__index">06</span>
+              <h3>Stickers</h3>
+              <p>Collectible brand moments and merch.</p>
+            </div>
+            <div class="service-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- Tshirt Designs Card -->
+          <div class="service-card reveal-on-scroll" style="--reveal-delay: 0.35s;">
+            <div class="service-card__content">
+              <img class="service-card__icon" src="/se7.png" alt="Tshirt Designs icon" />
+              <span class="service-card__index">07</span>
+              <h3>Tshirt Designs</h3>
+              <p>Apparel graphics and merch-ready visuals.</p>
+            </div>
+            <div class="service-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: Services Section -->
+    <!-- BEGIN: Portfolio Section -->
+    <section class="py-24 bg-black text-white relative overflow-x-hidden services-section"
+      data-purpose="portfolio-teaser" id="portfolio">
+      <div class="services-watermark" aria-hidden="true">
+        <span class="services-watermark__text-wrap">
+          <span class="services-watermark__text">Work</span>
+          <span class="services-watermark__our text-accent-orange">Selected</span>
+          <span class="services-watermark__number">02 /</span>
+        </span>
+      </div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div class="max-w-xl"></div>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 portfolio-grid">
+          <!-- Portfolio Item 1 -->
+          <div class="group relative aspect-square bg-black border border-white/10 overflow-hidden portfolio-card">
+            <img alt="Project 1"
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-30 transition-all duration-500"
+              src="/w.jpg" />
+            <div class="portfolio-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+            <span class="absolute bottom-6 left-6 text-lg font-semibold text-white/85 uppercase tracking-[0.08em]">WEB</span>
+            
+          </div>
+          <!-- Portfolio Item 2 -->
+          <div
+            class="group relative aspect-[3/4] bg-black border border-white/10 overflow-hidden md:row-span-2 portfolio-card">
+            <img alt="Project 2"
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-30 transition-all duration-500"
+              src="/u.jpg" />
+            <div class="portfolio-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+            <span
+              class="absolute bottom-6 left-6 text-lg font-semibold text-white/85 uppercase tracking-[0.08em]">UI/UX</span>
+            
+          </div>
+          <!-- Portfolio Item 3 -->
+          <div class="group relative aspect-square bg-black border border-white/10 overflow-hidden portfolio-card">
+            <img alt="Project 3"
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-30 transition-all duration-500"
+              src="/l.jpg" />
+            <div class="portfolio-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+            <span
+              class="absolute bottom-6 left-6 text-lg font-semibold text-white/85 uppercase tracking-[0.08em]">Logo &amp; Branding</span>
+            
+          </div>
+          <!-- Portfolio Item 4 -->
+          <div class="group relative aspect-square bg-black border border-white/10 overflow-hidden portfolio-card">
+            <img alt="Project 4"
+              class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-30 transition-all duration-500"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO9-HA8EYK8sWTjyCb47nGu897CPzxY259QxNRHksqrfngPJtOoSlL7hhmGyKCDEurI9YBJNut8sop1Job2B1-QhTMPIrCsztQif5u1EadAnIXQnikjojNGz9yKnkdpZ2UXNaP_sehWyHCW_zzewQ45jbeJW8PuLA9WNshcTxMvbrADExIbJgXnXCbYllZeBF4SwG5olhdmpZXYUIeDkVjxW0R3A0RemCrcv2iZwONvKR4A8S9_8zmCqaenfSYWrKmu3PDxdoQnCnk" />
+            <div class="portfolio-card__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </div>
+            
+          </div>
+        </div>
+        <div class="mt-16 text-center">
+          <a class="inline-flex items-center gap-4 text-sm font-bold uppercase tracking-[0.4em] hover:text-white transition-all"
+            href="#">
+            See All Creations
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- END: Portfolio Section -->
+    <!-- BEGIN: About Section -->
+    <section class="py-24 overflow-hidden bg-black text-white" data-purpose="about-section" id="about">
+      <div class="container mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+          <div class="relative">
+            <div class="absolute -top-10 -left-10 text-[200px] font-bold opacity-5 leading-none select-none">BOX</div>
+            <h2 class="text-5xl font-bold mb-8 uppercase tracking-tighter">Inside the <br /><span
+                class="text-white italic">Box</span></h2>
+            <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+              <p>
+                At BlaxckBox, we don't believe in thinking "outside" the box. We believe the box is a framework for
+                structural perfection. We operate within constraints to find the most elegant, minimalist, and efficient
+                solutions possible.
+              </p>
+              <p>
+                Our approach is data-driven but creatively led. We analyze the architecture of your brand to build
+                digital systems that aren't just beautiful—they are unbreakable.
+              </p>
+            </div>
+            <div class="mt-12 grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
+              <div>
+                <span class="block text-3xl font-bold mb-1">08+</span>
+                <span class="text-xs uppercase tracking-widest text-gray-400">Years of Experience</span>
+              </div>
+              <div>
+                <span class="block text-3xl font-bold mb-1">120+</span>
+                <span class="text-xs uppercase tracking-widest text-gray-400">Global Deployments</span>
+              </div>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="aspect-square bg-black border border-white/10 flex items-center justify-center p-12">
+              <div class="w-full h-full border border-white/20 p-8 flex items-center justify-center relative">
+                <img alt="Inside the Box" class="w-1/2 opacity-20"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjyzntF1SHDk2Bfi2fcOEu8lxuqQ4hBdKO8sOpNhlbYnomTTVX2LnvQt_2tSudsbn3604V9r-__zYMNtt7nSPoBvbY7RuoCFlJUmxaBqi6G4u7FC86p6Y0O2QJHQKCrvxVsf5T4PRFtcZrtk6sZA_J-zBBu8TUUrPoUU_ZNNHVZgZsJkjpkTwHPLP3kqAkCuNGfBKvIQpsfKRjQ8lUA_06oFsqLZ-zPfnv11WJHJLLADWk2Kj1iJfJu0obbyqKF-Jj6EgtGi6-2WsD" />
+                <!-- Geometric accents -->
+                <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/70"></div>
+                <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/70"></div>
+                <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-white/70"></div>
+                <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-white/70"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END: About Section -->
+  </main>
+  <!-- BEGIN: Footer Section -->
+  <footer class="bg-black pt-24 pb-12 border-t border-white/10 text-white" data-purpose="footer-contact">
+    <div class="flex items-center justify-center px-6 mb-20">
+      <img src="/herobg.png" alt="BLXCKBOX" class="max-w-[80vw] max-h-[60vh] object-contain select-none" />
+    </div>
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col lg:flex-row justify-between gap-16 mb-24">
+        <div class="max-w-md">
+          <div class="flex items-center gap-3 mb-8">
+            <img alt="BlaxckBox Logo" class="h-10 w-10"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyODTnLSzRH3oUNn2RE3A_vXKV0gIDOhudyxtRwPOiMIVSgsMQ80HRyyWoj1MThU12Cci6ASj98FgBVLYyR9FH-UA-7BhazkUi3Hn8kiJLv-dSIlOthNCWY8f3EA-2m6aLUa6wUt4iiYDTIV_Yq0vq9koujkLQKO1XmJgc8GENuNZqmAqqt48kAGsT0TAIu8fSKR6iifzWJCKSBcV9ileVB7avr-pCZzi3yrxzY3Eu1Q0xelSdYNLnoLGBx0m0PqNvANGkC8i0m4fP" />
+            <img alt="BlaxckBox Logo 2" class="h-10 w-10" src="/logo2.png" />
+            <span class="text-2xl font-bold tracking-tighter uppercase">BlaxckBox</span>
+          </div>
+          <p class="text-gray-400 mb-8">
+            Your vision deserves architectural precision. Let's build the next generation of digital excellence
+            together.
+          </p>
+          <div class="flex gap-4">
+            <a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+              href="#">TW</a>
+            <a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+              href="#">IG</a>
+            <a class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+              href="#">LI</a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-white/70">Navigate</h4>
+            <ul class="space-y-4 text-sm text-gray-400">
+              <li><a class="hover:text-white transition-colors" href="#">Services</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Portfolio</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">Lab</a></li>
+              <li><a class="hover:text-white transition-colors" href="#">About</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-white/70">Office</h4>
+            <address class="not-italic space-y-4 text-sm text-gray-400">
+              Silicon Valley, CA<br />
+              London, UK<br />
+              Berlin, DE
+            </address>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-white/70">Inquiry</h4>
+            <a class="text-lg font-bold hover:text-white transition-colors underline decoration-white/30"
+              href="mailto:hello@blaxckbox.studio">hello@blaxckbox.studio</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/10 gap-6">
+        <p class="text-xs text-gray-500 uppercase tracking-widest">© 2024 BlaxckBox Digital Studio. All Rights Reserved.
+        </p>
+        <div class="flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">
+          <a class="hover:text-white" href="#">Privacy</a>
+          <a class="hover:text-white" href="#">Terms</a>
+          <a class="hover:text-white" href="#">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- END: Footer Section -->
+  <!-- BEGIN: Desktop Sidebar -->
+  <div class="fixed inset-0 z-[60] pointer-events-none" id="desktop-sidebar-wrapper">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black/0 transition-all duration-500 pointer-events-none" id="sidebar-overlay"></div>
+    <!-- Sidebar Panel -->
+    <aside
+      class="absolute top-0 right-0 h-full w-[380px] bg-black translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col pointer-events-auto border-l border-white/10"
+      id="sidebar-panel">
+      <!-- Sidebar Header -->
+      <div class="flex items-center justify-between px-10 h-20 border-b border-white/10">
+        <span class="text-xs uppercase tracking-[0.3em] text-gray-500 font-medium">Navigation</span>
+        <button class="p-2 text-white hover:bg-white/10 transition-colors" id="close-sidebar"
+          aria-label="Close navigation">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
+      <!-- Sidebar Nav Links -->
+      <nav class="flex-1 flex flex-col justify-center px-10 gap-2">
+        <a class="sidebar-link group flex items-center gap-4 py-4 border-b border-white/5 text-white hover:text-gray-300 transition-all"
+          href="#services">
+          <span class="text-xs text-gray-600 font-mono group-hover:text-white transition-colors">01</span>
+          <span class="text-2xl font-bold uppercase tracking-tight">Services</span>
+        </a>
+        <a class="sidebar-link group flex items-center gap-4 py-4 border-b border-white/5 text-white hover:text-gray-300 transition-all"
+          href="#portfolio">
+          <span class="text-xs text-gray-600 font-mono group-hover:text-white transition-colors">02</span>
+          <span class="text-2xl font-bold uppercase tracking-tight">Portfolio</span>
+        </a>
+        <a class="sidebar-link group flex items-center gap-4 py-4 border-b border-white/5 text-white hover:text-gray-300 transition-all"
+          href="#about">
+          <span class="text-xs text-gray-600 font-mono group-hover:text-white transition-colors">03</span>
+          <span class="text-2xl font-bold uppercase tracking-tight">About</span>
+        </a>
+        <a class="sidebar-link group flex items-center gap-4 py-4 text-white hover:text-gray-300 transition-all"
+          href="#">
+          <span class="text-xs text-gray-600 font-mono group-hover:text-white transition-colors">04</span>
+          <span class="text-2xl font-bold uppercase tracking-tight">Contact</span>
+        </a>
+      </nav>
+      <!-- Sidebar Footer -->
+      <div class="px-10 py-8 border-t border-white/10">
+        <a class="block w-full text-center bg-white text-black px-6 py-4 font-bold uppercase tracking-widest text-sm hover:bg-gray-200 transition-all"
+          href="#">Start Project</a>
+        <div class="flex gap-4 mt-6 justify-center">
+          <a class="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-500 hover:bg-white hover:text-black transition-all"
+            href="#" aria-label="Instagram">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608C4.519 2.567 5.786 2.293 7.152 2.233 8.418 2.175 8.798 2.163 12 2.163zm0-2.163C8.741 0 8.333.014 7.053.072 5.775.13 4.602.384 3.635 1.035c-.966.65-1.72 1.404-2.37 2.37C.614 4.372.36 5.545.302 6.823.244 8.103.23 8.511.23 12s.014 3.897.072 5.177c.058 1.278.312 2.451.963 3.418.65.966 1.404 1.72 2.37 2.37.967.651 2.14.905 3.418.963C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.278-.058 2.451-.312 3.418-.963.966-.65 1.72-1.404 2.37-2.37.651-.967.905-2.14.963-3.418.058-1.28.072-1.688.072-5.177s-.014-3.897-.072-5.177c-.058-1.278-.312-2.451-.963-3.418a6.464 6.464 0 00-2.37-2.37C19.398.384 18.225.13 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.999 3.999 0 110-7.998 3.999 3.999 0 010 7.998zm6.406-10.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
+            </svg>
+          </a>
+          <a class="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-500 hover:bg-white hover:text-black transition-all"
+            href="#" aria-label="Facebook">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+          </a>
+          <a class="w-10 h-10 border border-white/10 flex items-center justify-center text-gray-500 hover:bg-white hover:text-black transition-all"
+            href="#" aria-label="LinkedIn">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <!-- END: Desktop Sidebar -->
+
+  <!-- BEGIN: Mobile Menu Overlay -->
+  <div class="fixed inset-0 bg-black text-white z-[60] flex flex-col items-center justify-center gap-8 hidden"
+    data-purpose="mobile-navigation-overlay" id="mobile-menu">
+    <button class="absolute top-8 right-8 text-white" id="close-menu">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      </svg>
+    </button>
+    <a class="text-4xl font-bold uppercase tracking-tighter" href="#services">Services</a>
+    <a class="text-4xl font-bold uppercase tracking-tighter" href="#portfolio">Portfolio</a>
+    <a class="text-4xl font-bold uppercase tracking-tighter" href="#about">About</a>
+    <a class="text-4xl font-bold uppercase tracking-tighter" href="#">Contact</a>
+  </div>
+  <!-- END: Mobile Menu Overlay -->
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
