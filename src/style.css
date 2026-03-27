@@ -135,7 +135,6 @@ section {
   }
 }
 
-
 .services-grid {
   margin-top: clamp(-120px, -9vw, -60px);
 }
@@ -453,6 +452,20 @@ section {
   .service-card__media {
     flex: 1 1 45%;
     height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-card,
+  .portfolio-card {
+    border-radius: 16px;
+  }
+
+  .service-card::before,
+  .service-card::after,
+  .portfolio-card::before,
+  .portfolio-card::after {
+    border-radius: inherit;
   }
 }
 

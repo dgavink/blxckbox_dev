@@ -1,9 +1,9 @@
 import './style.css';
 
-// Hero video: play for 7 seconds then pause
+// Hero video: play for 4 seconds then pause
 const heroVideo = document.querySelector('[data-purpose="hero-video"]');
 if (heroVideo) {
-  const pauseAfterMs = 3000;
+  const pauseAfterMs = 4000;
   let pauseTimeout;
 
   const startHeroVideo = () => {
