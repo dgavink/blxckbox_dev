@@ -159,6 +159,17 @@ section {
   z-index: 1;
 }
 
+.portfolio-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.25s ease;
+}
+
 .portfolio-card img {
   position: absolute;
   inset: 0;
@@ -188,12 +199,15 @@ section {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.35);
   color: rgba(255, 255, 255, 0.85);
   border-radius: 0;
   transform: translate(-50%, -50%) translateY(6px);
   opacity: 0;
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
   transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
   z-index: 2;
 }
@@ -209,6 +223,12 @@ section {
   transform: translate(-50%, -50%) rotate(45deg);
   border-color: #FF4D00;
   color: #FF4D00;
+  box-shadow: 0 12px 26px rgba(255, 77, 0, 0.2);
+}
+
+.portfolio-card:hover::after,
+.portfolio-card:focus-within::after {
+  opacity: 1;
 }
 
 @supports ((-webkit-backdrop-filter: blur(6px)) or (backdrop-filter: blur(6px))) {
