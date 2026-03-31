@@ -674,7 +674,7 @@ body {
 .work-modal__script {
   font-size: clamp(34px, 3.2vw, 54px);
   line-height: 0.6;
-  color: rgba(255, 255, 255, 0.95);
+  color: #FF4D00;
   margin-top: -8px;
 }
 
