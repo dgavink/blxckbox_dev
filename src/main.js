@@ -177,6 +177,27 @@ document.addEventListener('click', (event) => {
   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
+// Legal modals (Privacy / Terms)
+document.addEventListener('click', (event) => {
+  const trigger = event.target.closest('[data-legal-trigger]');
+  if (!trigger) return;
+  const targetSelector = trigger.getAttribute('data-legal-target');
+  if (!targetSelector) return;
+  const modal = document.querySelector(targetSelector);
+  if (!modal) return;
+  openModal(modal);
+});
+
+document.querySelectorAll('#privacy-modal, #terms-modal').forEach((modal) => {
+  const closeBtn = modal.querySelector('[data-modal-close]');
+  closeBtn?.addEventListener('click', () => closeModal(modal));
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal(modal);
+    }
+  });
+});
+
 // 3D tilt on About image
 const tiltCards = document.querySelectorAll('[data-tilt]');
 tiltCards.forEach((card) => {

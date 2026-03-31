@@ -310,7 +310,7 @@
           <div class="relative reveal-on-scroll" style="--reveal-delay: 0.15s;">
             <div class="aspect-square bg-black flex items-center justify-center p-12 tilt-card" data-tilt>
               <div class="w-full h-full p-8 flex items-center justify-center relative tilt-inner">
-                <img alt="Inside the Box" class="w-[90%] opacity-100" src="/aboutdes.jpeg" />
+                <img alt="Inside the Box" class="w-[90%] opacity-100" src="/aboutdes.png" />
                 <!-- Geometric accents -->
                 <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-white/70"></div>
                 <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-white/70"></div>
@@ -493,20 +493,6 @@
             </div>
           </div>
 
-          <div class="pricing-group pricing-group--single">
-            <h3>Others</h3>
-            <div class="pricing-cards pricing-cards--tiers">
-              <div class="pricing-card pricing-card--tier">
-                <span class="pricing-card__code">LMS1</span>
-                <h4>Library Management System</h4>
-                <div class="pricing-card__price">LKR 15,000.00</div>
-                <ul class="pricing-card__list">
-                  <li>Upto 3 pages</li>
-                  <li>Main. Charge: <span class="pricing-card__amount">3,000.00</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -516,7 +502,7 @@
       <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div class="max-w-xl">
-            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight">Tell Us About Your Need</h2>
+            <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight">Tell Us Your Need</h2>
             <p class="text-gray-400 mt-4">
               Tell us about your project and the service you need. We’ll get back with the next steps.
             </p>
@@ -551,7 +537,7 @@
             <span>Description</span>
             <textarea name="description" rows="4" placeholder="Tell us about your project" required></textarea>
           </label>
-          <button class="inquiry-form__submit" type="submit">Send Request</button>
+          <button class="inquiry-form__submit" type="submit">Send</button>
         </form>
       </div>
     </section>
@@ -612,9 +598,10 @@
             <h4 class="text-xs font-bold uppercase tracking-[0.2em] mb-6 text-white/70">Navigate</h4>
             <ul class="space-y-4 text-sm text-gray-400">
               <li><a class="hover:text-white transition-colors" href="#services">Services</a></li>
-              <li><a class="hover:text-white transition-colors" href="#pricing">Pricing</a></li>
               <li><a class="hover:text-white transition-colors" href="#portfolio">Portfolio</a></li>
               <li><a class="hover:text-white transition-colors" href="#about">About</a></li>
+              <li><a class="hover:text-white transition-colors" href="#pricing">Pricing</a></li>
+              <li><a class="hover:text-white transition-colors" href="#footer">Contact</a></li>
             </ul>
           </div>
           <div>
@@ -635,8 +622,8 @@
         <p class="text-xs text-gray-500 uppercase tracking-widest">© 2024 BlxckBox Digital Studio. All Rights Reserved.
         </p>
         <div class="flex gap-10 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500">
-          <a class="hover:text-white" href="#">Privacy</a>
-          <a class="hover:text-white" href="#">Terms</a>
+          <button class="hover:text-white" type="button" data-legal-trigger data-legal-target="#privacy-modal">PRIVACY</button>
+          <button class="hover:text-white" type="button" data-legal-trigger data-legal-target="#terms-modal">TERMS</button>
           <a class="hover:text-white" href="#">Security</a>
         </div>
       </div>
@@ -736,6 +723,48 @@
     <a class="text-4xl font-bold uppercase tracking-tighter" href="#footer">Contact</a>
   </div>
   <!-- END: Mobile Menu Overlay -->
+
+  <!-- BEGIN: Privacy Modal -->
+  <div class="work-modal" id="privacy-modal" role="dialog" aria-modal="true" aria-hidden="true" hidden
+    aria-label="Privacy notice">
+    <div class="work-modal__panel legal-modal__panel" role="document">
+      <button class="work-modal__close" type="button" data-modal-close aria-label="Close privacy notice">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+      </button>
+      <div class="legal-modal__content">
+        <h3 class="work-modal__title">Privacy</h3>
+        <p class="work-modal__text">
+          We respect your privacy. Any information you share through this website is used only to respond to your inquiry
+          and provide requested services. We do not sell or share your personal details with third parties. If you want your
+          data removed at any time, contact us and we will promptly take care of it.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- END: Privacy Modal -->
+
+  <!-- BEGIN: Terms Modal -->
+  <div class="work-modal" id="terms-modal" role="dialog" aria-modal="true" aria-hidden="true" hidden
+    aria-label="Terms notice">
+    <div class="work-modal__panel legal-modal__panel" role="document">
+      <button class="work-modal__close" type="button" data-modal-close aria-label="Close terms notice">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+      </button>
+      <div class="legal-modal__content">
+        <h3 class="work-modal__title">Terms</h3>
+        <p class="work-modal__text">
+          Project timelines, pricing, and deliverables are confirmed after an official agreement. All work remains the
+          property of BlxckBox until full payment is received. Revisions are provided within the agreed scope; additional
+          requests may require extra time or fees. By using this website, you agree to these terms.
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- END: Terms Modal -->
 
   <!-- BEGIN: UI/UX Modal -->
   <div class="work-modal" id="uiux-modal" role="dialog" aria-modal="true" aria-hidden="true" hidden
