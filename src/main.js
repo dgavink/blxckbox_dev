@@ -165,6 +165,18 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Smooth scroll for in-page anchors
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+  const href = link.getAttribute('href');
+  if (!href || href === '#') return;
+  const target = document.querySelector(href);
+  if (!target) return;
+  event.preventDefault();
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 // 3D tilt on About image
 const tiltCards = document.querySelectorAll('[data-tilt]');
 tiltCards.forEach((card) => {
@@ -206,6 +218,7 @@ const tshirtModal = document.getElementById('tshirt-modal');
 
 const openModal = (modal) => {
   if (!modal) return;
+  modal.removeAttribute('hidden');
   modal.classList.add('is-open');
   modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
@@ -216,6 +229,11 @@ const closeModal = (modal) => {
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  setTimeout(() => {
+    if (!modal.classList.contains('is-open')) {
+      modal.setAttribute('hidden', '');
+    }
+  }, 300);
 };
 
 // Close any open modal when clicking inquiry link
