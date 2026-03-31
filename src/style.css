@@ -535,7 +535,9 @@ section {
   }
 
   .work-modal__thumb {
-    height: 160px;
+    height: auto;
+    flex: 0 0 50%;
+    width: 50%;
   }
 }
 
