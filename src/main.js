@@ -175,7 +175,65 @@ document.addEventListener('click', (event) => {
   if (!target) return;
   event.preventDefault();
   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  const serviceValue = link.getAttribute('data-service');
+  if (serviceValue) {
+    const select = document.querySelector('#inquiry select[name="service"]');
+    if (select) {
+      setTimeout(() => {
+        select.value = serviceValue;
+      }, 300);
+    }
+  }
 });
+
+// Count-up animation in About section
+const countItems = document.querySelectorAll('[data-countup]');
+if (countItems.length) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const runCount = (el) => {
+    const target = Number(el.getAttribute('data-count')) || 0;
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 1200;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const value = Math.floor(progress * target);
+      el.textContent = `${value}${suffix}`;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = `${target}${suffix}`;
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    countItems.forEach((el) => {
+      const target = el.getAttribute('data-count') || '0';
+      const suffix = el.getAttribute('data-suffix') || '';
+      el.textContent = `${target}${suffix}`;
+    });
+  } else {
+    const countObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runCount(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    countItems.forEach((el) => countObserver.observe(el));
+  }
+}
 
 // Legal modals (Privacy / Terms)
 document.addEventListener('click', (event) => {

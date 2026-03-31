@@ -29,6 +29,14 @@ section {
   border-bottom: none;
 }
 
+/* Prevent text selection */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* =============================================
    PRICING
    ============================================= */
