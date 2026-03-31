@@ -643,8 +643,10 @@ section {
 }
 
 .inquiry-form__submit {
-  grid-column: 1 / -1;
+  grid-column: 2;
   margin-top: 8px;
+  justify-self: end;
+  width: 220px;
   background: #ffffff;
   color: #000000;
   border: none;
@@ -653,16 +655,25 @@ section {
   letter-spacing: 0.3em;
   font-size: 11px;
   font-weight: 700;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .inquiry-form__submit:hover {
-  background: #f2f2f2;
+  background: #FF4D00;
+  color: #000000;
+  box-shadow: 0 12px 24px rgba(255, 77, 0, 0.35);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 720px) {
   .inquiry-form {
     grid-template-columns: 1fr;
+  }
+
+  .inquiry-form__submit {
+    grid-column: 1;
+    justify-self: stretch;
+    width: 100%;
   }
 }
 
