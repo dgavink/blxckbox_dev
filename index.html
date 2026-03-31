@@ -156,7 +156,7 @@
             <div class="service-card__content">
               <img class="service-card__icon" src="/se1.png" alt="Web Development icon" />
               <span class="service-card__index">01</span>
-              <h3>Web Development</h3>
+              <h3>Websites</h3>
               <p>High-performance sites and scalable web apps.</p>
             </div>
             <div class="service-card__arrow" aria-hidden="true">
@@ -255,8 +255,8 @@
           <div class="max-w-xl"></div>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-0 portfolio-grid">
-          <div class="work-block h-40 border border-white/20 bg-white/5 backdrop-blur-md">
-            <span class="work-block__label">Web Development</span>
+          <div class="work-block h-40 border border-white/20 bg-white/5 backdrop-blur-md" data-work-trigger="web" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="web-modal">
+            <span class="work-block__label">Websites</span>
           </div>
           <div class="work-block h-40 border border-white/20 bg-white/5 backdrop-blur-md" data-work-trigger="uiux" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="uiux-modal">
             <span class="work-block__label">UI/UX Design</span>
@@ -525,7 +525,7 @@
             <span>Service Category</span>
             <select name="service" required>
               <option value="" disabled selected>Select a service</option>
-              <option value="web-development">Web Development</option>
+              <option value="web-development">Websites</option>
               <option value="ui-ux">UI/UX Design</option>
               <option value="logo-branding">Logo &amp; Branding</option>
               <option value="flyers-tags-stickers">Flyers, tags &amp; stickers</option>
@@ -801,6 +801,42 @@
     </div>
   </div>
   <!-- END: UI/UX Modal -->
+
+  <!-- BEGIN: Web Development Modal -->
+  <div class="work-modal" id="web-modal" role="dialog" aria-modal="true" aria-hidden="true" hidden
+    aria-label="Web development details">
+    <div class="work-modal__panel" role="document">
+      <button class="work-modal__close" type="button" data-modal-close aria-label="Close web development window">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+        </svg>
+      </button>
+      <div class="work-modal__media">
+        <img src="/web1.png" alt="Web development showcase 1" data-web-image />
+        <button class="work-modal__nav work-modal__nav--prev" type="button" data-web-prev aria-label="Previous image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+        <button class="work-modal__nav work-modal__nav--next" type="button" data-web-next aria-label="Next image">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="work-modal__content">
+        <span class="work-modal__eyebrow">Websites</span>
+        <h3 class="work-modal__title">Website</h3>
+        <span class="work-modal__script mrs-saint-delafield-regular">Designs</span>
+        <p class="work-modal__text">
+          We build high-performance, scalable websites and web apps that are fast, secure, and tailored to your business
+          goals. From landing pages to complex platforms, we deliver clean, conversion-driven experiences.
+        </p>
+        <a class="work-modal__cta" href="#inquiry" data-inquiry-link data-service="web-development">Make Your Own</a>
+      </div>
+    </div>
+  </div>
+  <!-- END: Web Development Modal -->
 
   <!-- BEGIN: Logo & Branding Modal -->
   <div class="work-modal work-modal--logo" id="logo-modal" role="dialog" aria-modal="true" aria-hidden="true" hidden

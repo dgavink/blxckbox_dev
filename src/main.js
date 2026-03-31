@@ -290,6 +290,7 @@ tiltCards.forEach((card) => {
 
 // UI/UX work modal
 const uiuxModal = document.getElementById('uiux-modal');
+const webModal = document.getElementById('web-modal');
 const logoModal = document.getElementById('logo-modal');
 const flyersModal = document.getElementById('flyers-modal');
 const socialModal = document.getElementById('social-modal');
@@ -319,7 +320,7 @@ const closeModal = (modal) => {
 document.addEventListener('click', (event) => {
   const inquiryLink = event.target.closest('[data-inquiry-link]');
   if (!inquiryLink) return;
-  [uiuxModal, logoModal, flyersModal, socialModal, tshirtModal].forEach((modal) => {
+  [uiuxModal, webModal, logoModal, flyersModal, socialModal, tshirtModal].forEach((modal) => {
     if (modal?.classList.contains('is-open')) {
       closeModal(modal);
     }
@@ -397,6 +398,81 @@ if (uiuxModal) {
     }
     if (event.key === 'ArrowLeft') {
       prevUiuxImage();
+    }
+  });
+}
+
+if (webModal) {
+  const webImage = webModal.querySelector('[data-web-image]');
+  const webNext = webModal.querySelector('[data-web-next]');
+  const webPrev = webModal.querySelector('[data-web-prev]');
+  const webClose = webModal.querySelector('[data-modal-close]');
+  const webImages = ['/web1.png', '/web2.png', '/web3.png', '/web4.png'];
+  let webIndex = 0;
+
+  const setWebImage = (index) => {
+    if (!webImage) return;
+    webImage.classList.add('is-fading');
+    setTimeout(() => {
+      webImage.src = webImages[index];
+      webImage.alt = `Web development showcase ${index + 1}`;
+      webImage.classList.remove('is-fading');
+    }, 150);
+  };
+
+  const openWebModal = () => {
+    webIndex = 0;
+    setWebImage(webIndex);
+    openModal(webModal);
+  };
+
+  const nextWebImage = () => {
+    webIndex = (webIndex + 1) % webImages.length;
+    setWebImage(webIndex);
+  };
+
+  const prevWebImage = () => {
+    webIndex = (webIndex - 1 + webImages.length) % webImages.length;
+    setWebImage(webIndex);
+  };
+
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-work-trigger=\"web\"]');
+    if (trigger) {
+      openWebModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      const trigger = event.target.closest('[data-work-trigger=\"web\"]');
+      if (trigger) {
+        event.preventDefault();
+        openWebModal();
+      }
+    }
+  });
+
+  webNext?.addEventListener('click', nextWebImage);
+  webPrev?.addEventListener('click', prevWebImage);
+  webClose?.addEventListener('click', () => closeModal(webModal));
+
+  webModal.addEventListener('click', (event) => {
+    if (event.target === webModal) {
+      closeModal(webModal);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!webModal.classList.contains('is-open')) return;
+    if (event.key === 'Escape') {
+      closeModal(webModal);
+    }
+    if (event.key === 'ArrowRight') {
+      nextWebImage();
+    }
+    if (event.key === 'ArrowLeft') {
+      prevWebImage();
     }
   });
 }
