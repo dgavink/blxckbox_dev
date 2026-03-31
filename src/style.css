@@ -82,6 +82,7 @@ section {
 .services-watermark__text-wrap {
   position: relative;
   display: inline-block;
+  overflow: visible;
 }
 
 .services-watermark__text {
@@ -110,6 +111,15 @@ section {
 
 .services-watermark__our.text-accent-orange {
   color: #FF4D00;
+}
+
+#services .services-watermark__our {
+  left: 22%;
+  transform: translate(-6%, -10%);
+}
+
+#services .services-watermark__text-wrap {
+  padding-top: clamp(24px, 3vw, 56px);
 }
 
 #portfolio .services-watermark__our {
@@ -159,6 +169,61 @@ section {
 
   .portfolio-grid {
     margin-top: 32px;
+  }
+
+  .service-card {
+    background: transparent !important;
+    box-shadow: none;
+  }
+
+  .service-card::before {
+    opacity: 0;
+  }
+
+  .service-card:hover {
+    background: transparent !important;
+    box-shadow: none;
+  }
+
+  .service-card:hover::before {
+    opacity: 0;
+  }
+
+  #services .services-watermark__text,
+  #services .services-watermark__our {
+    font-family: 'Space Grotesk', sans-serif;
+    font-style: normal;
+  }
+
+  #services .services-watermark__text {
+    font-size: clamp(64px, 16vw, 140px);
+  }
+
+  #services .services-watermark__our {
+    font-size: clamp(28px, 7vw, 60px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: 900px) {
+  .service-card {
+    background: transparent !important;
+    box-shadow: none;
+  }
+
+  .service-card::before {
+    opacity: 0;
+    background: none;
+  }
+
+  .service-card:hover {
+    background: transparent !important;
+    box-shadow: none;
+  }
+
+  .service-card:hover::before {
+    opacity: 0;
   }
 }
 
@@ -556,10 +621,17 @@ section {
 
 .inquiry-form__field select {
   accent-color: #FF4D00;
+  color-scheme: dark;
 }
 .inquiry-form__field select option {
   background: #000000;
   color: #ffffff;
+}
+
+.inquiry-form__field select option:hover,
+.inquiry-form__field select option:checked {
+  background: #000000;
+  color: #FF4D00;
 }
 
 .inquiry-form__field input::placeholder,
