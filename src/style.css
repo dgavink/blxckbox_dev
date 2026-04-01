@@ -279,6 +279,45 @@ body {
   transform: translateZ(24px);
 }
 
+.about-tilt-card {
+  padding: 0;
+}
+
+.about-tilt-inner {
+  padding: 0;
+}
+
+.about-tilt-img {
+  width: min(92vw, 420px);
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .about-tilt-card {
+    padding: 0.25rem;
+  }
+
+  .about-tilt-inner {
+    padding: 0.25rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .about-tilt-card {
+    padding: 1rem;
+  }
+
+  .about-tilt-inner {
+    padding: 1rem;
+  }
+
+  .about-tilt-img {
+    width: clamp(320px, 80%, 460px);
+  }
+}
+
 /* =============================================
    SERVICES BACKDROP
    ============================================= */
