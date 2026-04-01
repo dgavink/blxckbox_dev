@@ -30,19 +30,34 @@ section {
 }
 
 /* =============================================
+   HERO NET
+   ============================================= */
+
+.hero-net {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =============================================
    HERO MEDIA
    ============================================= */
 
 .hero-media-fade {
   opacity: 0;
-  transform: translateY(16px) scale(0.98);
-  animation: hero-media-in 0.9s ease 0.2s forwards;
+  transform: translateY(-16px) scale(0.98);
+  clip-path: inset(0 0 100% 0);
+  animation: hero-media-in 1s ease 0.2s forwards;
 }
 
 @keyframes hero-media-in {
   to {
     opacity: 0.9;
     transform: translateY(0) scale(1);
+    clip-path: inset(0 0 0 0);
   }
 }
 

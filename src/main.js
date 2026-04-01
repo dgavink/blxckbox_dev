@@ -2,6 +2,192 @@ import './style.css';
 
 // Hero media removed (image only)
 
+// Hero net background + cursor glow
+const heroSection = document.querySelector('[data-purpose="hero-section"]');
+const heroNet = document.getElementById('hero-net');
+if (heroSection && heroNet) {
+  const ctx = heroNet.getContext('2d');
+  if (ctx) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const gridSize = 40;
+    const accentRgb = '255, 77, 0';
+    let width = 0;
+    let height = 0;
+    let dpr = window.devicePixelRatio || 1;
+
+    const heroImage = heroSection.querySelector('img.hero-media-fade');
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let targetIntensity = 0;
+    let intensity = 0;
+    let imageRect = null;
+    const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
+    const mobileAnchor = { x: 0.38, y: 0.55 };
+
+    const updateImageRect = () => {
+      if (!heroImage) {
+        imageRect = null;
+        return;
+      }
+      const sectionRect = heroSection.getBoundingClientRect();
+      const imgRect = heroImage.getBoundingClientRect();
+      const x = imgRect.left - sectionRect.left;
+      const y = imgRect.top - sectionRect.top;
+      imageRect = {
+        x,
+        y,
+        w: imgRect.width,
+        h: imgRect.height,
+        right: x + imgRect.width,
+        bottom: y + imgRect.height,
+      };
+    };
+
+    const resize = () => {
+      width = heroSection.clientWidth;
+      height = heroSection.clientHeight;
+      dpr = window.devicePixelRatio || 1;
+      heroNet.width = Math.max(1, Math.floor(width * dpr));
+      heroNet.height = Math.max(1, Math.floor(height * dpr));
+      heroNet.style.width = `${width}px`;
+      heroNet.style.height = `${height}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      updateImageRect();
+      if (!isDesktop() && imageRect) {
+        targetX = imageRect.x + imageRect.w * mobileAnchor.x;
+        targetY = imageRect.y + imageRect.h * mobileAnchor.y;
+        targetIntensity = 1;
+      }
+    };
+
+    const drawGrid = () => {
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x <= width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x + 0.5, 0);
+        ctx.lineTo(x + 0.5, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y + 0.5);
+        ctx.lineTo(width, y + 0.5);
+        ctx.stroke();
+      }
+    };
+
+    const drawHighlight = () => {
+      const cellX = Math.floor(currentX / gridSize);
+      const cellY = Math.floor(currentY / gridSize);
+      const radius = 5;
+      const edgeFadePx = gridSize * 1.6;
+      const cornerRadius = Math.min(48, gridSize * 2);
+      const smoothstep = (edge0, edge1, x) => {
+        const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
+        return t * t * (3 - 2 * t);
+      };
+      for (let dx = -radius; dx <= radius; dx += 1) {
+        for (let dy = -radius; dy <= radius; dy += 1) {
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist > radius) continue;
+          const alpha = (1 - dist / (radius + 0.5)) * 0.55 * intensity;
+          if (alpha <= 0) continue;
+          const x = (cellX + dx) * gridSize;
+          const y = (cellY + dy) * gridSize;
+          let finalAlpha = alpha;
+          if (imageRect) {
+            const cx = x + gridSize * 0.5;
+            const cy = y + gridSize * 0.5;
+            const centerX = imageRect.x + imageRect.w * 0.5;
+            const centerY = imageRect.y + imageRect.h * 0.5;
+            const halfW = imageRect.w * 0.5;
+            const halfH = imageRect.h * 0.5;
+            const px = Math.abs(cx - centerX);
+            const py = Math.abs(cy - centerY);
+            const qx = px - (halfW - cornerRadius);
+            const qy = py - (halfH - cornerRadius);
+            const ox = Math.max(qx, 0);
+            const oy = Math.max(qy, 0);
+            const outside = Math.hypot(ox, oy);
+            const inside = Math.min(Math.max(qx, qy), 0);
+            const sdf = outside + inside - cornerRadius;
+            const insideDist = -sdf;
+            let edge = smoothstep(-edgeFadePx, edgeFadePx, insideDist);
+            const noise =
+              (Math.sin(cx * 0.18) +
+                Math.sin(cy * 0.23 + 1.4) +
+                Math.sin((cx + cy) * 0.08 + 0.7)) / 3;
+            edge *= 1 + noise * 0.22;
+            finalAlpha *= Math.min(1, Math.max(0, edge));
+            if (finalAlpha <= 0.001) continue;
+          }
+          ctx.strokeStyle = `rgba(${accentRgb}, ${finalAlpha})`;
+          ctx.lineWidth = 1.25;
+          ctx.strokeRect(x + 0.5, y + 0.5, gridSize, gridSize);
+        }
+      }
+    };
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+      drawGrid();
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+      intensity += (targetIntensity - intensity) * 0.12;
+      if (intensity > 0.01) {
+        drawHighlight();
+      }
+      requestAnimationFrame(render);
+    };
+
+    resize();
+    heroImage?.addEventListener('load', () => {
+      updateImageRect();
+      if (!isDesktop() && imageRect) {
+        targetX = imageRect.x + imageRect.w * mobileAnchor.x;
+        targetY = imageRect.y + imageRect.h * mobileAnchor.y;
+        targetIntensity = 1;
+      }
+    });
+
+    if (!prefersReducedMotion) {
+      heroSection.addEventListener('mousemove', (event) => {
+        if (!isDesktop()) return;
+        const rect = heroSection.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (
+          imageRect &&
+          (x < imageRect.x || x > imageRect.right || y < imageRect.y || y > imageRect.bottom)
+        ) {
+          targetIntensity = 0;
+          return;
+        }
+        targetX = x;
+        targetY = y;
+        targetIntensity = 1;
+      });
+
+      heroSection.addEventListener('mouseleave', () => {
+        if (!isDesktop()) return;
+        targetIntensity = 0;
+      });
+
+      const observer = new ResizeObserver(() => {
+        resize();
+      });
+      observer.observe(heroSection);
+      window.addEventListener('resize', resize);
+      render();
+    } else {
+      drawGrid();
+    }
+  }
+}
+
 // Navigation transparency on scroll
 const mainNav = document.querySelector('[data-purpose="main-navigation"]');
 if (mainNav) {
