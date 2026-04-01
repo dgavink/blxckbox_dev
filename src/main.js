@@ -25,7 +25,7 @@ if (heroSection && heroNet) {
     let cursorActive = false;
     let imageRect = null;
     const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
-    const mobileAnchor = { x: 0.38, y: 0.55 };
+    const mobileAnchor = { x: 0.5, y: 0.55 };
 
     const updateImageRect = () => {
       if (!heroImage) {
