@@ -82,8 +82,8 @@ if (heroSection && heroNet) {
     const drawHighlight = () => {
       const cellX = Math.floor(currentX / gridSize);
       const cellY = Math.floor(currentY / gridSize);
-      const radius = 5;
-      const edgeFadePx = gridSize * 1.6;
+      const radius = isDesktop() ? 5 : 3;
+      const edgeFadePx = gridSize * (isDesktop() ? 1.6 : 1.1);
       const cornerRadius = Math.min(48, gridSize * 2);
       const smoothstep = (edge0, edge1, x) => {
         const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
@@ -93,7 +93,7 @@ if (heroSection && heroNet) {
         for (let dy = -radius; dy <= radius; dy += 1) {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist > radius) continue;
-          const alpha = (1 - dist / (radius + 0.5)) * 0.55 * intensity;
+          const alpha = (1 - dist / (radius + 0.5)) * (isDesktop() ? 0.55 : 0.42) * intensity;
           if (alpha <= 0) continue;
           const x = (cellX + dx) * gridSize;
           const y = (cellY + dy) * gridSize;
