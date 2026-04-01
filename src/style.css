@@ -29,6 +29,23 @@ section {
   border-bottom: none;
 }
 
+/* =============================================
+   HERO MEDIA
+   ============================================= */
+
+.hero-media-fade {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  animation: hero-media-in 0.9s ease 0.2s forwards;
+}
+
+@keyframes hero-media-in {
+  to {
+    opacity: 0.9;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* Prevent text selection */
 body {
   -webkit-user-select: none;

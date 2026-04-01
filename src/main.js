@@ -1,29 +1,6 @@
 import './style.css';
 
-// Hero video: play for 4 seconds then pause
-const heroVideo = document.querySelector('[data-purpose="hero-video"]');
-if (heroVideo) {
-  const pauseAfterMs = 4000;
-  let pauseTimeout;
-
-  const startHeroVideo = () => {
-    clearTimeout(pauseTimeout);
-    heroVideo.currentTime = 0;
-    const playPromise = heroVideo.play();
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {});
-    }
-    pauseTimeout = setTimeout(() => {
-      heroVideo.pause();
-    }, pauseAfterMs);
-  };
-
-  if (heroVideo.readyState >= 2) {
-    startHeroVideo();
-  } else {
-    heroVideo.addEventListener('loadeddata', startHeroVideo, { once: true });
-  }
-}
+// Hero media removed (image only)
 
 // Navigation transparency on scroll
 const mainNav = document.querySelector('[data-purpose="main-navigation"]');
