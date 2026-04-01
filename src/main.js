@@ -22,6 +22,7 @@ if (heroSection && heroNet) {
     let currentY = 0;
     let targetIntensity = 0;
     let intensity = 0;
+    let cursorActive = false;
     let imageRect = null;
     const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
     const mobileAnchor = { x: 0.38, y: 0.55 };
@@ -63,7 +64,7 @@ if (heroSection && heroNet) {
     };
 
     const drawGrid = () => {
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0)';
       ctx.lineWidth = 1;
       for (let x = 0; x <= width; x += gridSize) {
         ctx.beginPath();
@@ -82,8 +83,8 @@ if (heroSection && heroNet) {
     const drawHighlight = () => {
       const cellX = Math.floor(currentX / gridSize);
       const cellY = Math.floor(currentY / gridSize);
-      const radius = isDesktop() ? 5 : 3;
-      const edgeFadePx = gridSize * (isDesktop() ? 1.6 : 1.1);
+      const radius = isDesktop() ? 5 : 4;
+      const edgeFadePx = gridSize * (isDesktop() ? 1.6 : 1.3);
       const cornerRadius = Math.min(48, gridSize * 2);
       const smoothstep = (edge0, edge1, x) => {
         const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
@@ -93,7 +94,7 @@ if (heroSection && heroNet) {
         for (let dy = -radius; dy <= radius; dy += 1) {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist > radius) continue;
-          const alpha = (1 - dist / (radius + 0.5)) * (isDesktop() ? 0.55 : 0.42) * intensity;
+          const alpha = (1 - dist / (radius + 0.5)) * (isDesktop() ? 0.55 : 0.5) * intensity;
           if (alpha <= 0) continue;
           const x = (cellX + dx) * gridSize;
           const y = (cellY + dy) * gridSize;
@@ -134,10 +135,16 @@ if (heroSection && heroNet) {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
       drawGrid();
+      if (!isDesktop() && imageRect) {
+        cursorActive = true;
+        targetIntensity = 1;
+        targetX = imageRect.x + imageRect.w * mobileAnchor.x;
+        targetY = imageRect.y + imageRect.h * mobileAnchor.y;
+      }
       currentX += (targetX - currentX) * 0.18;
       currentY += (targetY - currentY) * 0.18;
       intensity += (targetIntensity - intensity) * 0.12;
-      if (intensity > 0.01) {
+      if (cursorActive && intensity > 0.01) {
         drawHighlight();
       }
       requestAnimationFrame(render);
@@ -150,31 +157,37 @@ if (heroSection && heroNet) {
         targetX = imageRect.x + imageRect.w * mobileAnchor.x;
         targetY = imageRect.y + imageRect.h * mobileAnchor.y;
         targetIntensity = 1;
+        cursorActive = true;
       }
     });
 
     if (!prefersReducedMotion) {
       heroSection.addEventListener('mousemove', (event) => {
-        if (!isDesktop()) return;
-        const rect = heroSection.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        if (
-          imageRect &&
-          (x < imageRect.x || x > imageRect.right || y < imageRect.y || y > imageRect.bottom)
-        ) {
-          targetIntensity = 0;
-          return;
-        }
-        targetX = x;
-        targetY = y;
-        targetIntensity = 1;
-      });
-
-      heroSection.addEventListener('mouseleave', () => {
-        if (!isDesktop()) return;
+      if (!isDesktop()) return;
+      const rect = heroSection.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      if (
+        imageRect &&
+        (x < imageRect.x || x > imageRect.right || y < imageRect.y || y > imageRect.bottom)
+      ) {
+        cursorActive = false;
         targetIntensity = 0;
-      });
+        intensity = 0;
+        return;
+      }
+      targetX = x;
+      targetY = y;
+      targetIntensity = 1;
+      cursorActive = true;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      if (!isDesktop()) return;
+      cursorActive = false;
+      targetIntensity = 0;
+      intensity = 0;
+    });
 
       const observer = new ResizeObserver(() => {
         resize();
