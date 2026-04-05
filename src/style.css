@@ -1,6 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
 body {
   background-color: #000000;
   color: #ffffff;
+  overflow-x: hidden;
 }
 
 .mrs-saint-delafield-regular {
@@ -510,6 +518,52 @@ body {
   margin-top: clamp(-120px, -9vw, -60px);
 }
 
+.portfolio-inline {
+  margin-top: clamp(24px, 4vw, 52px);
+  display: grid;
+  gap: 26px;
+}
+
+.work-inline-item {
+  border: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+.work-inline-item .work-modal__panel {
+  width: 100%;
+  min-height: 540px;
+  opacity: 1;
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+  border: none;
+}
+
+.work-inline-item--logo .work-modal__panel {
+  flex-direction: column;
+  min-height: 0;
+}
+
+.work-inline-item--logo .work-modal__content {
+  flex: unset;
+  padding: 64px 64px 56px;
+  gap: 10px;
+  text-align: center;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .work-inline-item .work-modal__panel {
+    max-height: none;
+    overflow: hidden;
+  }
+
+  .work-inline-item--logo .work-modal__content {
+    padding: 48px 32px 40px;
+  }
+}
+
 /* =============================================
    WORK BLOCKS
    ============================================= */
@@ -761,13 +815,93 @@ body {
 .work-modal__thumb {
   flex: 1 1 0;
   min-width: 0;
-  width: 100%;
+  width: auto;
   height: auto;
   background: transparent;
   border: none;
   padding: 0;
   margin: 0;
   display: block;
+}
+
+#logo-inline .work-modal__gallery,
+#flyers-inline .work-modal__gallery,
+#social-inline .work-modal__gallery,
+#tshirt-inline .work-modal__gallery {
+  gap: 0;
+}
+
+#web-inline .work-modal__gallery {
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+#uiux-inline .work-modal__gallery {
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+#web-inline .work-modal__panel {
+  flex-direction: column;
+  min-height: 0;
+}
+
+#uiux-inline .work-modal__panel {
+  flex-direction: column;
+  min-height: 0;
+}
+
+#web-inline .work-modal__content {
+  text-align: center;
+  align-items: center;
+}
+
+#uiux-inline .work-modal__content {
+  text-align: center;
+  align-items: center;
+}
+
+#web-inline .work-modal__thumb {
+  flex: 0 0 50%;
+  width: 50%;
+}
+
+#uiux-inline .work-modal__thumb {
+  flex: 0 0 50%;
+  width: 50%;
+}
+
+#logo-inline .work-modal__thumb,
+#uiux-inline .work-modal__thumb,
+#web-inline .work-modal__thumb,
+#flyers-inline .work-modal__thumb,
+#social-inline .work-modal__thumb,
+#tshirt-inline .work-modal__thumb {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 0;
+  background: transparent;
+  filter: grayscale(0);
+  transition: filter 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #logo-inline .work-modal__thumb,
+  #uiux-inline .work-modal__thumb,
+  #web-inline .work-modal__thumb,
+  #flyers-inline .work-modal__thumb,
+  #social-inline .work-modal__thumb,
+  #tshirt-inline .work-modal__thumb {
+    filter: grayscale(1);
+  }
+
+  #logo-inline .work-modal__thumb:hover,
+  #uiux-inline .work-modal__thumb:hover,
+  #web-inline .work-modal__thumb:hover,
+  #flyers-inline .work-modal__thumb:hover,
+  #social-inline .work-modal__thumb:hover,
+  #tshirt-inline .work-modal__thumb:hover {
+    filter: grayscale(0);
+  }
 }
 
 .work-modal__note {
@@ -785,12 +919,15 @@ body {
   background: #ffffff;
   color: #000000;
   border-color: transparent;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .work-modal__cta.work-modal__cta--logo:hover {
   background: #f2f2f2;
   color: #000000;
   border-color: transparent;
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {
@@ -844,13 +981,15 @@ body {
   font-size: 11px;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.9);
-  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .work-modal__cta:hover {
   border-color: #FF4D00;
   color: #FF4D00;
   background: rgba(255, 77, 0, 0.1);
+  box-shadow: 0 12px 24px rgba(255, 77, 0, 0.2);
+  transform: translateY(-1px);
 }
 
 /* =============================================
