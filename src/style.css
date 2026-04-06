@@ -867,8 +867,62 @@ body {
 }
 
 #uiux-inline .work-modal__thumb {
-  flex: 0 0 50%;
-  width: 50%;
+  flex: 0 0 33.3333%;
+  width: 33.3333%;
+}
+
+.uiux-extra {
+  display: none;
+}
+
+#uiux-inline.is-expanded .uiux-extra {
+  display: block;
+}
+
+.tshirt-extra {
+  display: none;
+}
+
+#tshirt-inline.is-expanded .tshirt-extra {
+  display: block;
+}
+
+.uiux-see-all {
+  margin-top: 6px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 11px;
+  font-weight: 700;
+  transition: color 0.25s ease;
+}
+
+.uiux-see-all svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s ease;
+}
+
+.uiux-see-all:hover {
+  color: #FF4D00;
+}
+
+.uiux-see-all:hover svg {
+  transform: translateX(3px);
+}
+
+#uiux-inline.is-expanded .uiux-see-all svg {
+  transform: rotate(90deg);
+}
+
+#tshirt-inline.is-expanded .uiux-see-all svg {
+  transform: rotate(90deg);
 }
 
 #logo-inline .work-modal__thumb,
@@ -880,28 +934,6 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.28);
   padding: 0;
   background: transparent;
-  filter: grayscale(0);
-  transition: filter 0.3s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  #logo-inline .work-modal__thumb,
-  #uiux-inline .work-modal__thumb,
-  #web-inline .work-modal__thumb,
-  #flyers-inline .work-modal__thumb,
-  #social-inline .work-modal__thumb,
-  #tshirt-inline .work-modal__thumb {
-    filter: grayscale(1);
-  }
-
-  #logo-inline .work-modal__thumb:hover,
-  #uiux-inline .work-modal__thumb:hover,
-  #web-inline .work-modal__thumb:hover,
-  #flyers-inline .work-modal__thumb:hover,
-  #social-inline .work-modal__thumb:hover,
-  #tshirt-inline .work-modal__thumb:hover {
-    filter: grayscale(0);
-  }
 }
 
 .work-modal__note {

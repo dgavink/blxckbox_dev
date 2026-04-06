@@ -483,3 +483,29 @@ const closeModal = (modal) => {
     }
   }, 300);
 };
+
+// UI/UX inline "See all" toggle
+const uiuxInlineSection = document.getElementById('uiux-inline');
+const uiuxSeeAllTrigger = document.querySelector('[data-uiux-see-all]');
+const tshirtInlineSection = document.getElementById('tshirt-inline');
+const tshirtSeeAllTrigger = document.querySelector('[data-tshirt-see-all]');
+
+uiuxSeeAllTrigger?.addEventListener('click', () => {
+  if (!uiuxInlineSection) return;
+  const expanded = uiuxInlineSection.classList.toggle('is-expanded');
+  uiuxSeeAllTrigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  const triggerText = uiuxSeeAllTrigger.querySelector('span');
+  if (triggerText) {
+    triggerText.textContent = expanded ? 'See less' : 'See all';
+  }
+});
+
+tshirtSeeAllTrigger?.addEventListener('click', () => {
+  if (!tshirtInlineSection) return;
+  const expanded = tshirtInlineSection.classList.toggle('is-expanded');
+  tshirtSeeAllTrigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+  const triggerText = tshirtSeeAllTrigger.querySelector('span');
+  if (triggerText) {
+    triggerText.textContent = expanded ? 'See less' : 'See all';
+  }
+});
